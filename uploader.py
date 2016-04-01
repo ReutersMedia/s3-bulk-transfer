@@ -166,7 +166,10 @@ if __name__=="__main__":
         print USAGE
         sys.exit(0)
     if len(sys.argv)>=2:
-        part_num = int(sys.argv[1])
+        try:
+            part_num = int(sys.argv[1])
+        except:
+            LOGGER.warn("ignoring command-line argument")
     else:
         part_num = int(os.getenv("PART_NUMBER"))
     run(int(os.getenv("UPLOADER_THREADS")),part_num)
